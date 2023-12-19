@@ -1,4 +1,4 @@
-name: Example deploy
+name: 'Example "Do something"'
 
 on:
   workflow_dispatch:
@@ -7,9 +7,9 @@ jobs:
   job:
     runs-on: ubuntu-latest
     steps:
-      - name: Name
+      - name: Doing
         run: |
-          echo 'Hello!' 
+          echo 'Hello world!' 
 
   callback:
     needs: job
