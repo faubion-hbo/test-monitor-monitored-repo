@@ -11,9 +11,9 @@ jobs:
         run: |
           echo 'Hello!' 
 
-  # callback:
-  #   needs: job
-  #   uses: faubion-hbo/test-workflows/.github/workflows/monitor-callback.yaml@main
-  #   with:
-  #     GITHUB_CONTEXT: ${{ toJSON(github) }}
-  #     WORKFLOW_RESULTS: ${{ toJSON(needs) }}
+  callback:
+    needs: job
+    uses: faubion-hbo/test-workflows/.github/workflows/monitor-callback.yaml@main
+    with:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
+      WORKFLOW_RESULTS: ${{ toJSON(needs) }}
