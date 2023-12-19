@@ -13,7 +13,7 @@ jobs:
 
   callback:
     needs: job
-    uses: faubion-hbo/test-workflows/.github/workflows/monitor-callback.yaml@main
+    uses: faubion-hbo/test-monitor/.github/workflows/monitor-callback.yaml@main
     with:
       GITHUB_CONTEXT: ${{ toJSON(github) }}
       WORKFLOW_RESULTS: ${{ toJSON(needs) }}
