@@ -1,0 +1,19 @@
+name: Example deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Name
+        run: |
+          echo 'Hello!' 
+
+  callback:
+    needs: job
+    uses: faubion-hbo/test-workflows/.github/workflows/monitor-callback@main
+    with:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
+      WORKFLOW_RESULTS: ${{ toJSON(needs) }}
