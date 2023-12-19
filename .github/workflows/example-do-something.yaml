@@ -2,6 +2,10 @@ name: 'Example "Do something"'
 
 on:
   workflow_dispatch:
+    EX_INPUT_1:
+      description: An example string input
+      type: string
+      required: false
 
 jobs:
   job:
@@ -10,6 +14,12 @@ jobs:
       - name: Doing
         run: |
           echo 'Hello world!' 
+
+      - name: Printing
+        env:
+          EX_INPUT: ${{ inputs.EX_INPUT_1 }}
+        run: |
+          echo "EX_INPUT=$EX_INPUT"
 
   callback:
     needs: job
