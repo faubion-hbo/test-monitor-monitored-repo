@@ -6,6 +6,10 @@ on:
       description: An example string input
       type: string
       required: false
+    data:
+      description: An example string input
+      type: string
+      required: false
 
 jobs:
   job:
@@ -18,8 +22,10 @@ jobs:
       - name: Printing
         env:
           EX_INPUT: ${{ inputs.EX_INPUT_1 }}
+          DATA: ${{ inputs.data }}
         run: |
           echo "EX_INPUT=$EX_INPUT"
+          echo "data=$DATA"
 
   callback:
     needs: job
