@@ -2,14 +2,15 @@ name: 'Example "Do something"'
 
 on:
   workflow_dispatch:
-    EX_INPUT_1:
-      description: An example string input
-      type: string
-      required: false
-    data:
-      description: An example string input
-      type: string
-      required: false
+    inputs:
+      EX_INPUT_1:
+        description: An example string input
+        type: string
+        required: false
+      data:
+        description: An example string input
+        type: string
+        required: false
 
 jobs:
   job:
