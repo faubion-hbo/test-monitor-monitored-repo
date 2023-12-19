@@ -17,4 +17,5 @@ jobs:
     with:
       GITHUB_CONTEXT: ${{ toJSON(github) }}
       WORKFLOW_RESULTS: ${{ toJSON(needs) }}
+    secrets:
       CALLBACK_TOKEN: ${{ secrets.MONITOR_ROUNDTRIP_PAT }}
