@@ -12,7 +12,7 @@ jobs:
           echo 'First job running...'
 
   job_two_a:
-    needs: job
+    needs: job_one
     runs-on: ubuntu-latest
     steps:
       - name: 'Second job, a'
@@ -23,7 +23,7 @@ jobs:
           sleep $sleep_s
 
   job_two_b:
-    needs: job
+    needs: job_one
     runs-on: ubuntu-latest
     steps:
       - name: 'Second job, b'
