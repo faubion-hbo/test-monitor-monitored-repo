@@ -1,0 +1,43 @@
+name: 'Test workflow (2nd, B)'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job_one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First job
+        run: |
+          echo 'First job running...'
+
+  job_two_a:
+    needs: job
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Second job, a'
+        run: |
+          echo 'Second job, a running...'
+          sleep_s=$(shuf -i 0-9 -n 1)
+          echo "Sleeping for ${sleep_s}s..."
+          sleep $sleep_s
+
+  job_two_b:
+    needs: job
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Second job, b'
+        run: |
+          echo 'Second job, b running...'
+          sleep_s=$(shuf -i 0-9 -n 1)
+          echo "Sleeping for ${sleep_s}s..."
+          sleep $sleep_s
+
+  callback:
+    needs: [job_two_a, job_two_b]
+    uses: faubion-hbo/test-monitor/.github/workflows/monitor-callback.yaml@main
+    with:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
+      WORKFLOW_RESULTS: ${{ toJSON(needs) }}
+    secrets:
+      CALLBACK_TOKEN: ${{ secrets.MONITOR_ROUNDTRIP_PAT }}

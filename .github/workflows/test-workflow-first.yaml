@@ -1,0 +1,22 @@
+name: 'Test workflow (1st)'
+
+on:
+  workflow_dispatch:
+    inputs:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First job
+        run: |
+          echo 'First job running...'
+
+  callback:
+    needs: job
+    uses: faubion-hbo/test-monitor/.github/workflows/monitor-callback.yaml@main
+    with:
+      GITHUB_CONTEXT: ${{ toJSON(github) }}
+      WORKFLOW_RESULTS: ${{ toJSON(needs) }}
+    secrets:
+      CALLBACK_TOKEN: ${{ secrets.MONITOR_ROUNDTRIP_PAT }}
